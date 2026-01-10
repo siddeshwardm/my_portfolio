@@ -33,8 +33,8 @@ export const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "siddeshwar@example.com",
-      href: "mailto:siddeshwar@example.com",
+      value: "siddeshwarmadargave6@gmail.com",
+      href: "mailto:siddeshwarmadargave6@gmail.com",
     },
     {
       icon: MapPin,
@@ -45,15 +45,15 @@ export const Contact = () => {
     {
       icon: Phone,
       label: "Phone",
-      value: "+91 XXXXX XXXXX",
-      href: "tel:+91XXXXXXXXXX",
+      value: "+91 76765 95907",
+      href: "tel:+917676595907",
     },
   ];
 
   const socials = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:siddeshwar@example.com", label: "Email" },
+    { icon: Github, href: "https://github.com/siddeshwardm?tab=repositories", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/siddeshwar-madargave-945092307/", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:siddeshwarmadargave6@gmail.com", label: "Email" },
   ];
 
   return (
@@ -152,7 +152,7 @@ export const Contact = () => {
                       id="email"
                       name="email"
                       type="email"
-                      placeholder="john@example.com"
+                      placeholder="email@example.com"
                       required
                       className="bg-secondary/50 border-border focus:border-primary"
                     />
