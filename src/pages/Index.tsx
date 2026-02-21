@@ -6,10 +6,12 @@ import { Experience } from "@/components/sections/Experience";
 import { Projects } from "@/components/sections/Projects";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
+import { SnowfallOverlay } from "@/components/SnowfallOverlay";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background noise-overlay">
+      <SnowfallOverlay />
       <Navbar />
       <main>
         <Hero />
