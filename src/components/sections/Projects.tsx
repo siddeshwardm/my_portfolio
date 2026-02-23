@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink, Github, Folder } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { fadeUp, hoverLift, scaleIn, staggerContainer } from "@/lib/animations";
 
 const projects = [
   {
@@ -75,24 +76,24 @@ export const Projects = () => {
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          variants={staggerContainer(0.14)}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
         >
-          <div className="flex items-center gap-4 mb-12">
+          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">
               Featured <span className="text-gradient">Projects</span>
             </h2>
             <div className="flex-1 h-px bg-border" />
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={scaleIn}
+                transition={{ delay: index * 0.06 }}
+                whileHover={hoverLift}
                 className="group glass glass-hover rounded-2xl p-6 flex flex-col h-full"
               >
                 <div className="flex items-center justify-between mb-4">
@@ -131,13 +132,16 @@ export const Projects = () => {
 
                 <ul className="space-y-1 mb-4">
                   {project.features.map((feature, i) => (
-                    <li
+                    <motion.li
                       key={i}
                       className="text-xs text-muted-foreground flex items-start gap-2"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.35, delay: index * 0.06 + 0.12 + i * 0.05 }}
                     >
                       <span className="text-primary">▹</span>
                       {feature}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
 
@@ -161,9 +165,8 @@ export const Projects = () => {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            variants={fadeUp}
+            transition={{ delay: 0.25 }}
             className="text-center mt-12"
           >
             <Button variant="outline" size="lg" asChild>

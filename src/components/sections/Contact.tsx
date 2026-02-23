@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { fadeLeft, fadeRight, fadeUp, staggerContainer } from "@/lib/animations";
 
 export const Contact = () => {
   const ref = useRef(null);
@@ -89,11 +90,11 @@ export const Contact = () => {
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          variants={staggerContainer(0.14)}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
         >
-          <div className="text-center mb-12">
+          <motion.div variants={fadeUp} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Get In <span className="text-gradient">Touch</span>
             </h2>
@@ -101,22 +102,23 @@ export const Contact = () => {
               I'm currently looking for new opportunities. Whether you have a question
               or just want to say hi, I'll try my best to get back to you!
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Contact Info */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              variants={fadeLeft}
+              transition={{ delay: 0.1 }}
               className="space-y-8"
             >
               <div className="space-y-6">
                 {contactInfo.map((item) => (
-                  <a
+                  <motion.a
                     key={item.label}
                     href={item.href}
                     className="flex items-center gap-4 group"
+                    whileHover={{ x: 6 }}
+                    transition={{ duration: 0.18 }}
                   >
                     <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                       <item.icon className="h-6 w-6" />
@@ -127,7 +129,7 @@ export const Contact = () => {
                         {item.value}
                       </p>
                     </div>
-                  </a>
+                  </motion.a>
                 ))}
               </div>
 
@@ -152,9 +154,8 @@ export const Contact = () => {
 
             {/* Contact Form */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              variants={fadeRight}
+              transition={{ delay: 0.18 }}
             >
               <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">

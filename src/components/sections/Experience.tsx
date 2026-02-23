@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Building2, Calendar, MapPin } from "lucide-react";
+import { fadeLeft, fadeUp, hoverLift, staggerContainer } from "@/lib/animations";
 
 const experiences = [
   {
@@ -42,25 +43,24 @@ export const Experience = () => {
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          variants={staggerContainer(0.14)}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
         >
-          <div className="flex items-center gap-4 mb-12">
+          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">
               Work <span className="text-gradient">Experience</span>
             </h2>
             <div className="flex-1 h-px bg-border" />
-          </div>
+          </motion.div>
 
           {/* Experience Timeline */}
           <div className="relative mb-20">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                variants={fadeLeft}
+                transition={{ delay: index * 0.12 }}
                 className="mb-12"
               >
 
@@ -90,24 +90,29 @@ export const Experience = () => {
 
                   <ul className="space-y-2 mb-4">
                     {exp.description.map((item, i) => (
-                      <li
+                      <motion.li
                         key={i}
                         className="text-sm text-muted-foreground flex items-start gap-2"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.35, delay: index * 0.12 + 0.1 + i * 0.06 }}
                       >
                         <span className="text-primary mt-1">▹</span>
                         {item}
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
 
                   <div className="flex flex-wrap gap-2">
                     {exp.technologies.map((tech) => (
-                      <span
+                      <motion.span
                         key={tech}
                         className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium"
+                        whileHover={{ y: -2, scale: 1.04 }}
+                        transition={{ duration: 0.15 }}
                       >
                         {tech}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </div>
@@ -116,19 +121,19 @@ export const Experience = () => {
           </div>
 
           {/* Education */}
-          <div className="flex items-center gap-4 mb-12">
+          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">
               <span className="text-gradient">Education</span>
             </h2>
             <div className="flex-1 h-px bg-border" />
-          </div>
+          </motion.div>
 
           {education.map((edu, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              variants={fadeUp}
+              transition={{ delay: 0.15 }}
+              whileHover={hoverLift}
               className="glass glass-hover rounded-2xl p-6"
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">

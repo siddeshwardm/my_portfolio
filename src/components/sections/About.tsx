@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { MapPin, GraduationCap, Calendar, Code2 } from "lucide-react";
+import { fadeLeft, fadeRight, fadeUp, hoverLift, scaleIn, staggerContainer } from "@/lib/animations";
 
 export const About = () => {
   const ref = useRef(null);
@@ -19,19 +20,19 @@ export const About = () => {
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          variants={staggerContainer(0.14)}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
         >
-          <div className="flex items-center gap-4 mb-12">
+          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">
               About <span className="text-gradient">Me</span>
             </h2>
             <div className="flex-1 h-px bg-border" />
-          </div>
+          </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+            <motion.div variants={fadeLeft} className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
                 I'm <span className="text-primary font-semibold">Siddeshwar Madargave</span>, 
                 a passionate Full Stack Developer currently pursuing my B.Tech in Information Science 
@@ -81,15 +82,15 @@ export const About = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <motion.div variants={fadeRight} className="grid grid-cols-2 gap-6">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  variants={scaleIn}
+                  transition={{ delay: index * 0.06 }}
+                  whileHover={hoverLift}
                   className="glass glass-hover rounded-2xl p-6 text-center"
                 >
                   <div className="text-4xl font-bold text-gradient mb-2">
@@ -98,7 +99,7 @@ export const About = () => {
                   <p className="text-sm text-muted-foreground">{stat.label}</p>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
