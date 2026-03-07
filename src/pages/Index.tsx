@@ -6,9 +6,9 @@ import { Experience } from "@/components/sections/Experience";
 import { Projects } from "@/components/sections/Projects";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
-import { SnowfallOverlay } from "@/components/SnowfallOverlay";
 import { motion, useReducedMotion } from "framer-motion";
 import { CursorFog } from "@/components/layout/CursorFog";
+import Snowfall from 'react-snowfall';
 
 const Index = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -23,8 +23,8 @@ const Index = () => {
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-15 grid-animate" />
         <CursorFog />
+        <Snowfall  color="#82C3D9"/>
       </div>
-      <SnowfallOverlay />
       <div className="relative z-10">
         <Navbar />
         <main>
