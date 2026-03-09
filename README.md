@@ -61,7 +61,9 @@ Vite is configured to run on:
 
 - `http://localhost:8080`
 
-```Try Snowfall effect
+Try Snowfall effect:
+
+```
 npm install react-snowfall
 ```
 
