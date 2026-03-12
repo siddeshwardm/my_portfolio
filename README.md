@@ -3,6 +3,8 @@
 
 A modern, animated personal portfolio built with React + TypeScript and styled with Tailwind (shadcn/ui). It includes sections for About, Skills, Experience, Projects, and a Contact form powered by EmailJS.
 
+live here : https://portfolio-siddeshwardm.vercel.app/
+
 ## Overview
 
 - Single-page portfolio with smooth animations (Framer Motion)
